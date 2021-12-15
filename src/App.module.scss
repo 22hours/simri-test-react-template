@@ -1,17 +1,16 @@
 .main {
-    -webkit-overflow-scrolling: touch;
-    transition: background-color 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
-    position: fixed;
-    max-width: 550px;
-    min-height: 550px;
-    z-index: 2;
-    height: 100%;
-    width: 100%;
-    right: 0px;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    margin: auto;
-
-    background-color: rgb(240, 240, 240);
+  -webkit-overflow-scrolling: touch;
+  transition: background-color 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
+  position: fixed;
+  max-width: 550px;
+  min-height: 550px;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+  background-color: rgb(240, 240, 240);
 }

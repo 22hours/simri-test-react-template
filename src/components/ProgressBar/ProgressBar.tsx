@@ -1,17 +1,34 @@
+import { ThemeContext } from "App";
+import { useContext } from "react";
 import style from "./ProgressBar.module.scss";
-type Props = {};
-
-const ProgressBar = (props: Props) => {
-    return <div></div>;
+type Props = {
+  step: number;
+  maxStep: number;
 };
 
-// <div class="iQ__yM⍡znlg⍢ ProgressBar" style="width: 70%; opacity: 1; visibility: visible;">
-//     <div class="iQ__Ҕo⍢♞bS⍡Y ProgressBg" style="background-color: rgba(0, 0, 0, 0.07); height: 20px;">
-//         <div
-//             class="iQ__qoc♦⍨9ƛV Progress"
-//             style="height: 20px;width: 14.2857%;background-color: rgb(63, 157, 255);"
-//         ></div>
-//     </div>
-// </div>
+const ProgressBar = (props: Props) => {
+  const theme = useContext(ThemeContext);
+
+  const width = ((props.step - 1) / props.maxStep) * 100;
+  return (
+    <>
+      <div className={style.ProgressText}>
+        <span className={style.now}>{props.step}</span>
+        <span className={style.total}>/ {props.maxStep}</span>
+      </div>
+      <div className={style.ProgressBar}>
+        <div className={style.inner}>
+          <div
+            className={style.progress}
+            style={{
+              backgroundColor: theme?.accent,
+              width: `${width}%`,
+            }}
+          ></div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default ProgressBar;
