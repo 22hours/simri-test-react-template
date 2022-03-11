@@ -1,5 +1,6 @@
-import { ThemeContext } from "App";
 import React, { useContext } from "react";
+import { useRecoilValue } from "recoil";
+import { appData } from "recoil/app";
 import style from "./Social.module.scss";
 
 type Props = {};
@@ -28,7 +29,7 @@ const social_list = [
 ];
 
 const Social = (props: Props) => {
-  const theme = useContext(ThemeContext);
+  const { theme } = useRecoilValue(appData);
 
   return (
     <div className={style.container}>

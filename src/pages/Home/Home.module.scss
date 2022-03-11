@@ -1,12 +1,5 @@
 .container {
-  position: absolute;
   height: 100%;
-  width: 100%;
-  right: 0px;
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
-  margin: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -17,6 +10,7 @@
     margin-bottom: 0px;
   }
   article {
+    flex: 1;
     height: 65%;
     width: 100%;
     display: flex;
@@ -38,22 +32,27 @@
       flex-direction: column;
       width: 70%;
       .title {
-        font-size: 26px;
+        font-size: 31px;
         font-weight: bold;
-        margin-bottom: 5px;
+        margin-bottom: 2px;
+        white-space: nowrap;
       }
       .subTitle {
-        font-size: 16px;
+        font-size: 20px;
         margin-top: 5px;
         margin-bottom: 20px;
+        font-family: "dotum";
+        white-space: nowrap;
       }
     }
 
     .ImageSection {
       background-size: cover;
       background-position: center, center;
+      overflow: hidden;
+
       margin: 0;
-      width: 90%;
+      width: 100%;
       overflow: hidden;
       padding-top: 50.625%;
       position: relative;
@@ -70,6 +69,8 @@
 
     .BtnSection {
       width: 100%;
+      display: flex;
+      justify-content: center;
     }
   }
 }

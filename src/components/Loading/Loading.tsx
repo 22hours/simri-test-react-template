@@ -1,15 +1,16 @@
-import { DataContext } from "App";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { appData, appStep } from "recoil/app";
 import style from "./Loading.module.scss";
 
 type Props = {};
 
 const Loading = (props: Props) => {
+  const data = useRecoilValue(appData);
+  const setStep = useSetRecoilState(appStep);
   const [isSuccess, setIsSuccess] = useState(false);
-  const data = useContext(DataContext);
-  const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       setIsSuccess(true);
@@ -19,7 +20,7 @@ const Loading = (props: Props) => {
   useEffect(() => {
     if (isSuccess) {
       setTimeout(() => {
-        navigate("/result/1");
+        setStep("RESULT");
       }, 2000);
     }
   }, [isSuccess]);

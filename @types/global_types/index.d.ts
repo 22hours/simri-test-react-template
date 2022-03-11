@@ -1,6 +1,8 @@
 //  ./@types/custom-types/index.d.ts
+
 declare module "@global_types" {
   export namespace meta_types {
+    type TestType = "MBTI" | "TYPE" | "SCORE" | "OX";
     type userInput =
       | (commonType & {
           type: "MBTI";
@@ -59,7 +61,7 @@ declare module "@global_types" {
     type questionItem = {
       mbti: {
         question: string;
-        answerList: { answer: string; point: number[] }[];
+        answerList: { answer: string; point: number }[];
       };
       type: {
         question: string;

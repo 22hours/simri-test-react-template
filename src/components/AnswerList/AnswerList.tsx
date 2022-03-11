@@ -38,8 +38,9 @@ const AnswerList = (props: Props) => {
             }
             key={`questionitem_${props.step}_${idx}`}
             onClick={() => handleClickAnswer(idx, it.point)}
-            text={it.answer}
-          />
+          >
+            {it.answer}
+          </Button>
         );
       })}
     </div>

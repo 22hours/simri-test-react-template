@@ -1,17 +1,18 @@
-import { DataContext } from "App";
-import React, { useContext, useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
+import { useRecoilValue } from "recoil";
+import { appData } from "recoil/app";
 import style from "./Button.module.scss";
 
 type Props = {
   onClick: () => void;
-  text: string;
+  children: ReactNode;
   className?: string;
+  id?: string;
 };
 
 const Button = (props: Props) => {
-  const data = useContext(DataContext);
+  const { theme, button, animation } = useRecoilValue(appData);
   // @ts-ignore
-  const { theme, button, animation } = data;
   const buttonBorder = useMemo(() => {
     switch (button) {
       case "ROUND":
@@ -22,29 +23,26 @@ const Button = (props: Props) => {
         return 0;
     }
   }, [button]);
-  if (data) {
-    return (
+  return (
+    <div
+      id={props.id}
+      data-aos={animation.type}
+      data-aos-duration={animation.duration}
+      className={[style.outter].join(" ")}
+    >
       <div
-        data-aos={animation.type}
-        data-aos-duration={animation.duration}
-        className={[style.outter].join(" ")}
+        onClick={props.onClick}
+        className={[style.inner, props.className].join(" ")}
+        style={{
+          borderRadius: `${buttonBorder}px`,
+          background: `${theme?.accent}`,
+          boxShadow: `${theme?.accent_shadow} 0px 5px 20px`,
+        }}
       >
-        <div
-          onClick={props.onClick}
-          className={[style.inner, props.className].join(" ")}
-          style={{
-            borderRadius: `${buttonBorder}px`,
-            background: `${theme?.accent}`,
-            boxShadow: `${theme?.accent_shadow} 0px 5px 20px`,
-          }}
-        >
-          <div className={style.text}>{props.text}</div>
-        </div>
+        <div className={style.text}>{props.children}</div>
       </div>
-    );
-  } else {
-    return <div>Loading for data</div>;
-  }
+    </div>
+  );
 };
 
 export default React.memo(Button);

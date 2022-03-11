@@ -1,14 +1,15 @@
-import { DataContext } from "App";
 import Button from "components/Button/Button";
 import Logo from "components/Logo/Logo";
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { appData, appStep } from "recoil/app";
 import style from "./Home.module.scss";
 type Props = {};
 
 const Home = (props: Props) => {
-  const data = useContext(DataContext);
-  const navigate = useNavigate();
+  const data = useRecoilValue(appData);
+  const setStep = useSetRecoilState(appStep);
+  const onClickStart = () => setStep("QUESTION");
+
   if (data) {
     return (
       <div className={style.container} data-aos={"fade-up"}>
@@ -20,7 +21,12 @@ const Home = (props: Props) => {
             <div style={{ color: data.theme.accent }} className={style.title}>
               {data.title}
             </div>
-            <div className={style.subTitle}>{data.subTitle}</div>
+            <div
+              style={{ color: data.theme.accent }}
+              className={style.subTitle}
+            >
+              {data.subTitle}
+            </div>
           </section>
           <section
             style={{
@@ -31,12 +37,7 @@ const Home = (props: Props) => {
             className={style.ImageSection}
           ></section>
           <section className={style.BtnSection}>
-            <Button
-              text={data.startText}
-              onClick={() => {
-                navigate("/question");
-              }}
-            />
+            <Button onClick={onClickStart}>{data.startText}</Button>
           </section>
         </article>
       </div>

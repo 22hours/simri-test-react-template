@@ -1,6 +1,6 @@
 import { meta_types } from "@global_types";
-import { DataContext } from "App";
-import React, { useContext } from "react";
+import { useRecoilValue } from "recoil";
+import { appData } from "recoil/app";
 import style from "./QuizImage.module.scss";
 
 type Props = {
@@ -9,22 +9,12 @@ type Props = {
 };
 
 const QuizImage = (props: Props) => {
-  const data = useContext(DataContext);
   return (
     <>
       {props.mediaType === "image" ? (
-        <div
-          // style={{
-          //   backgroundImage: `url('${
-          //     process.env.PUBLIC_URL + `/assets/img/question_${props.step}`
-          //   }')`,
-          // }}
-          className={style.ImageContainer}
-        >
+        <div className={style.ImageContainer}>
           <img
-            data-aos={data?.animation.type}
-            data-aos-duration={data?.animation.duration}
-            src={process.env.PUBLIC_URL + `/assets/img/question_${props.step}`}
+            src={process.env.PUBLIC_URL + `/assets/img/Q${props.step}.png`}
           />
         </div>
       ) : (

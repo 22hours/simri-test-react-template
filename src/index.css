@@ -1,22 +1,40 @@
+@font-face {
+  font-family: "gmarket";
+  src: url("./fonts/GmarketSansTTFBold.ttf");
+}
+@font-face {
+  font-family: "dotum";
+  src: url("./fonts/KoPubWorld\ Dotum_Pro\ Bold.otf");
+}
+
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-        "Droid Sans", "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: "gmarket";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 #root {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    overflow: visible;
-    right: 0px;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    margin: auto;
+  flex: 1;
+  margin: 0px auto;
+  background-color: white;
+
+  max-width: 600px;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#root > div {
+  flex: 1;
+}
+
+:root {
+  --primary: rgb(30, 43, 107);
 }
