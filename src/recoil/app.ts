@@ -17,11 +17,11 @@ export const appData = atom<meta_types.userInput>({
   default: {
     type: "TYPE",
     questionItemList: questionData,
-    button: "ROUND",
+    button: "SOFT",
     theme: {
       background: "white",
-      accent: "rgb(30, 43, 107)",
-      accent_shadow: "rgba(30, 43, 107, 50%)",
+      accent: "rgb(255, 153, 204)",
+      accent_shadow: "rgba(255, 153, 204, 50%)",
     },
     animation: {
       type: "fade-up",
@@ -31,9 +31,20 @@ export const appData = atom<meta_types.userInput>({
       type: "Circles",
     },
     layout: "text",
-    title: "덕업일치 자가테스트",
-    subTitle: "내 인생의 덕업일치 상태는 어떨까?",
-    startText: "> 시작하기",
+    title: "나의 봄나들이 패션스타일은?",
+    subTitle: "벚꽃놀이 취향으로 보는 봄패션 MBTI",
+    startText: "테스트 시작하기",
+  },
+});
+
+export const shareData = selector({
+  key: "shareData",
+  get: ({ get }): ShareData => {
+    return {
+      title: "나의 봄나들이 패션스타일은?",
+      description: "벚꽃놀이 취향으로 보는 봄패션 MBTI",
+      imageUrl: window.location.href + "/assets/img/start_banner.png",
+    };
   },
 });
 
@@ -49,6 +60,7 @@ interface Result {
   max: number;
   summary: string;
   descript: string[];
+  descriptList: { title: string; descript: string[] }[];
 }
 
 export const testResultSelector = selector({
@@ -60,7 +72,7 @@ export const testResultSelector = selector({
       case "TYPE":
       case "MBTI": {
         const max = resultArray.indexOf(Math.max(...resultArray));
-        return resultData[max + 1];
+        return resultData[max];
       }
       case "SCORE":
       case "OX": {
@@ -86,14 +98,3 @@ interface ShareData {
   description: string;
   imageUrl: string;
 }
-
-export const shareData = selector({
-  key: "shareData",
-  get: ({ get }): ShareData => {
-    return {
-      title: "덕업일치 자가테스트",
-      description: "덕업일치 자가테스트 내 인생의 덕업일치 상태는 어떨까?",
-      imageUrl: window.location.href + "/assets/img/start_banner.png",
-    };
-  },
-});

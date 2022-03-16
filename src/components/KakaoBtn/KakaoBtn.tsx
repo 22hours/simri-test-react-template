@@ -16,6 +16,8 @@ type Props = {};
 
 // COMPONENT
 
+const url = process.env.REACT_APP_PUBLIC_URL;
+
 const KakaoBtn = (props: Props) => {
   const data = useRecoilValue(shareData);
   const testResult = useRecoilValue(testResultSelector);
@@ -23,10 +25,6 @@ const KakaoBtn = (props: Props) => {
   useEffect(() => {
     createKakaoButton();
   }, []);
-
-  console.log(
-    `https://iamcompany.web.app/assets/img/result${testResult.id}.png`
-  );
 
   const createKakaoButton = () => {
     // @ts-ignore
@@ -44,26 +42,25 @@ const KakaoBtn = (props: Props) => {
         content: {
           title: testResult.result,
           description: data.description,
-          imageUrl: `https://iamcompany.web.app/assets/img/result${testResult.id}.png`,
+          imageUrl: `${url}/assets/img/result_${testResult.id}.png`,
           link: {
-            mobileWebUrl: "https://iamcompany.web.app",
-            webUrl: "https://iamcompany.web.app",
+            mobileWebUrl: url,
+            webUrl: url,
           },
         },
         buttons: [
           {
             title: "결과보기",
             link: {
-              mobileWebUrl:
-                "https://iamcompany.web.app" + `?result=${testResult.id}`,
-              webUrl: "https://iamcompany.web.app" + `?result=${testResult.id}`,
+              mobileWebUrl: `${url}?result=${testResult.id}`,
+              webUrl: `${url}?result=${testResult.id}`,
             },
           },
           {
             title: "테스트하기",
             link: {
-              mobileWebUrl: "https://iamcompany.web.app",
-              webUrl: "https://iamcompany.web.app",
+              mobileWebUrl: url,
+              webUrl: url,
             },
           },
         ],

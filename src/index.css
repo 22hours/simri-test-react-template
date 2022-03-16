@@ -1,14 +1,14 @@
 @font-face {
-  font-family: "gmarket";
-  src: url("./fonts/GmarketSansTTFBold.ttf");
+  font-family: "katuri";
+  src: url("./fonts/Katuri.ttf");
 }
 @font-face {
-  font-family: "dotum";
-  src: url("./fonts/KoPubWorld\ Dotum_Pro\ Bold.otf");
+  font-family: "gpgothic";
+  src: url("./fonts/gpgothic.ttf");
 }
 
 body {
-  font-family: "gmarket";
+  font-family: "katuri";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0px;
@@ -21,6 +21,7 @@ code {
     monospace;
 }
 #root {
+  font-family: "katuri";
   flex: 1;
   margin: 0px auto;
   background-color: white;
@@ -36,5 +37,6 @@ code {
 }
 
 :root {
-  --primary: rgb(30, 43, 107);
+  --primary: rgb(255, 153, 204);
+  --bg: rgb(251, 244, 247);
 }

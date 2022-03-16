@@ -13,11 +13,11 @@ const Home = (props: Props) => {
   if (data) {
     return (
       <div className={style.container} data-aos={"fade-up"}>
-        <header className={style.LogoSection}>
+        <header className={style.section_logo}>
           <Logo />
         </header>
         <article>
-          <section className={style.HeadSection}>
+          <section className={style.section_head}>
             <div style={{ color: data.theme.accent }} className={style.title}>
               {data.title}
             </div>
@@ -29,14 +29,14 @@ const Home = (props: Props) => {
             </div>
           </section>
           <section
+            className={style.section_image}
             style={{
               backgroundImage: `url('${
-                process.env.PUBLIC_URL + "/assets/img/start_banner.png"
+                process.env.PUBLIC_URL + "/assets/img/start_banner.gif"
               }')`,
             }}
-            className={style.ImageSection}
           ></section>
-          <section className={style.BtnSection}>
+          <section className={style.section_btn}>
             <Button onClick={onClickStart}>{data.startText}</Button>
           </section>
         </article>

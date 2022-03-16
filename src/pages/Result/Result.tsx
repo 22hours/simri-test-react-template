@@ -1,5 +1,6 @@
 import Button from "components/Button/Button";
 import KakaoBtn from "components/KakaoBtn/KakaoBtn";
+import { getCTALink } from "lib/cta";
 import { postTestResult } from "lib/db";
 import { useCallback, useEffect } from "react";
 import { useRecoilValue } from "recoil";
@@ -17,7 +18,7 @@ const Result = (props: Props) => {
 
   useEffect(() => {
     if (window.location.search === "") {
-      // postTestResult(resultData.id);
+      postTestResult(resultData.id);
     }
   }, []);
 
@@ -27,21 +28,49 @@ const Result = (props: Props) => {
       data-aos={"fade-up"}
       data-aos-duartion="1500"
     >
-      <section className={style.section_image}></section>
-      <section className={style.section_body}></section>
-      <section className={style.result}>
+      <section className={style.section_image}>
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/img/result_${resultData.id}.gif`}
+        />
+      </section>
+      <section className={style.section_body}>
         <div className={style.result_inner}>
+          <div className={style.summary}>{resultData.summary}</div>
           <div style={{ color: theme?.accent }} className={style.mainTitle}>
             {resultData.result}
           </div>
-          <div className={style.summary}>"{resultData.summary}"</div>
+
           <div className={style.descript_wrapper}>
-            {resultData.descript.map((it, idx) => (
+            {resultData.descriptList.map((it, m_idx) => (
+              <div key={`descript_panel_1`} className={style.descript_item}>
+                <div
+                  style={{ color: theme?.accent }}
+                  className={style.item_title}
+                >
+                  {it.title}
+                </div>
+                <div className={style.descript}>
+                  {it.descript.map((it, c_idx) => (
+                    <div key={`result-descript-${m_idx}-${c_idx}`}>{it}</div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* <div className={style.descript_wrapper}>
+            {resultData.descriptList.map((it, idx) => (
               <div className={style.descript} key={`descript_${idx}`}>
                 - {it}
               </div>
             ))}
-          </div>
+          </div> */}
+          <section className={style.cta}>
+            <Button
+              onClick={() => (window.location.href = getCTALink(resultData.id))}
+            >
+              {"더 다양한 추천 스타일 보러가기"}
+            </Button>
+          </section>
           <section className={style.footer}>
             <Button onClick={onClickRestart}>{"다시하기"}</Button>
             <KakaoBtn />
